@@ -156,7 +156,7 @@ const CONFIG = {
 };
 
 /* ============================================================
-   i18n — 5 languages. Brand law honored in every one:
+   i18n — 7 languages (en, hi, ar, zh, tr, es, fr). Brand law honored in every one:
    STINK (never "funk"), deodorant-only, never targets a group,
    cure-not-kill, "I got you", PSSHT. Hashtags stay English.
    Hindi STINK = बदबू.
@@ -325,6 +325,72 @@ const LANG = {
     shareTpl:(l,t)=>'Koku Seviyem '+l+'/10 — '+t+' 😅🧴\nDaha mı temizsin sence? Koku Kontrolü yap 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
     cardTop:'🧴 THE DEODORANT MAN', cardMid:'KOKU SEVİYEM', cardAsk:"Senin Koku Seviyen kaç?",
     copied:'Kopyalandı! İstediğin yere yapıştır 📋', saved:'Kart kaydedildi 💾'
+  },
+
+  es:{ name:"ES", dir:"ltr",
+    h1:'¿Cuál es tu <span class="hl">Nivel de Peste?</span>',
+    sub:'Sé sincero — ¿<i>tú</i> hueles mal? ¿Te darías cuenta siquiera? ¿Conoces a alguien que apesta… y nunca tuviste el valor de decírselo?<br>Es hora de un <b style="color:#fff">Chequeo de Peste.</b> 🫣',
+    introQ:'Primero… ¿por qué estás realmente aquí?',
+    vibes:{ self:'Sé sincero… ¿huelo mal <b>&nbsp;yo&nbsp;</b>?', noseblind:'De verdad no sé si huelo mal', witness:'Conozco a alguien que apesta (y no tiene ni idea)', silent:'Quise decírselo a alguien… pero no pude' },
+    introFine:'10 segundos. Sin vergüenza. Todos hemos sido los cuatro. 🧴',
+    back:'← Atrás', qof:(a,b)=>'Pregunta '+a+' de '+b, scoreLbl:'/ 10 PESTE',
+    questions:[
+      {q:"Sé sincero — ¿cuándo te pusiste desodorante hoy, de verdad?", a:["Esta mañana, como un adulto responsable","Emm… ¿ayer?","Llevo varios días así","¿Desodorante? Yo me fío de la suerte"]},
+      {q:"Ahora mismo, ¿te darías cuenta si TÚ empezaras a oler mal?", a:["100%, lo notaría al instante","¿Quizá? Difícil saberlo","La verdad… no. Uno no se huele a sí mismo","Prefiero no averiguarlo"]},
+      {q:"Esa camiseta / bolsa de gym / sudadera — ¿qué tan fresca está de verdad?", a:["Limpia y con desodorante, fresquísima","Aguanté un día de más","Ya tiene… personalidad propia","De esa bolsa no hablamos"]},
+      {q:"¿Hay alguien en tu vida que APESTA y no tiene ni idea?", a:["No, mi círculo está fresco","…se me viene una persona a la mente 👀","Uy, varias. ¡VARIAS!","Todo mi grupo tiene un 'olor' y nadie lo dice"]},
+      {q:"¿Alguna vez quisiste decirle a alguien que apesta — y te acobardaste?", a:["Nunca hizo falta","Una vez. Me lo llevé a la tumba","Siempre. Es demasiado incómodo","Le pagaría a un héroe para que lo diga por mí"]},
+      {q:"Un desconocido se te acerca mucho en un bus lleno. ¿Qué haces?", a:["Estoy fresco, me acerco más","Un autochequeo disimulado 😬","Pánico. Aguanto la respiración. Replanteo mi vida","En cuanto me relajo, el problema soy yo"]}
+    ],
+    tiers:[
+      {t:"FRESCO CERTIFICADO ✨", v:"Míralo. La sala está a salvo. Ya lo entiendes: un poco de conciencia, mucha amabilidad. Sigue así.", c:"Eres de los raros que de verdad se daría cuenta. El mundo necesita más como tú. 🦸"},
+      {t:"CASI FRESCO 🌿", v:"Bien — pero andas más al límite de lo que admites. Una mañana que olvides y la aguja se mueve. Ten el desodorante a mano.", c:"Jugada pro: un Chequeo de Frescura antes de salir. Tu yo del futuro te lo agradece."},
+      {t:"ZONA DE PELIGRO 🚨", v:"Sin juzgar — todos hemos estado aquí — pero toca un Chequeo de Peste. ¿La buena noticia? Se arregla en 2 segundos. Una pasada y vuelves a ser héroe.", c:"Sin vergüenza y sin hablar de duchas — solo una pasada. Ese es todo el superpoder. 🧴"},
+      {t:"…tenemos que hablar 🫣", v:"¿Con cariño? Puede que el problema seas tú. Pero ser el que huele no es un defecto — es que no te hueles a ti mismo. Nadie te lo dijo. Así que te lo decimos con amabilidad: una pasada. Tú puedes.", c:"Giro: el que apesta se convierte en el héroe. De eso va literalmente el juego. 🦸"}
+    ],
+    vibeLines:{ self:"Hiciste la pregunta valiente que casi todos esquivan. Respeto. 🫡", noseblind:"No olerte a ti mismo es ciencia real — no es tu culpa. Ahora ya lo sabes.", witness:"Ves lo que otros fingen no ver. THE DEODORANT MAN existe justo para esto — el rescate amable que nadie nota.", silent:"¿Eso que nunca pudiste decir? El héroe lo dice por ti — sin humillar a nadie. 🧴" },
+    share:'📲 Compartir mi resultado', save:'💾 Guardar tarjeta', retake:'↻ Repetir',
+    waitTitle:'Consigue el juego primero. 🦸', waitBody:'THE DEODORANT MAN llega pronto a iOS y Android. Sé el héroe que salva a la gente de su peste — sin avergonzar a nadie. <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'tu@email.com — avísame en el lanzamiento', join:'🔔 Unirme a la lista',
+    waitFine:'Sin spam. Un solo correo de "ya está disponible" + sorteo de desodorante gratis para los primeros. Cancela cuando quieras.',
+    foot:'La broma es sobre la situación — nunca sobre la persona. Apto para adolescentes.',
+    done:'✅ ¡Estás en la lista! Atento a tu correo de "ya está disponible". Ahora reta a un amigo a superar tu Nivel de Peste. 🧴',
+    shareTpl:(l,t)=>'Mi Nivel de Peste es '+l+'/10 — '+t+' 😅🧴\n¿Te crees más fresco? Hazte el Chequeo de Peste 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'MI NIVEL DE PESTE', cardAsk:"¿Cuál es TU Nivel de Peste?",
+    copied:'¡Copiado! Pégalo donde quieras 📋', saved:'Tarjeta guardada 💾'
+  },
+
+  fr:{ name:"FR", dir:"ltr",
+    h1:'C\'est quoi ton <span class="hl">Niveau de Puanteur ?</span>',
+    sub:'Sois honnête — est-ce que <i>tu</i> pues ? Le sentirais-tu seulement ? Tu connais quelqu\'un qui pue… sans jamais avoir osé le lui dire ?<br>C\'est l\'heure d\'un <b style="color:#fff">Contrôle Puanteur.</b> 🫣',
+    introQ:'D\'abord… pourquoi es-tu vraiment là ?',
+    vibes:{ self:'Sois honnête… est-ce que <b>&nbsp;je&nbsp;</b> pue ?', noseblind:'Je n\'arrive vraiment pas à savoir si je pue', witness:'Je connais quelqu\'un qui pue (et qui n\'en a aucune idée)', silent:'J\'ai voulu le dire à quelqu\'un… mais je n\'ai pas pu' },
+    introFine:'10 secondes. Aucune honte. On a tous été les quatre. 🧴',
+    back:'← Retour', qof:(a,b)=>'Question '+a+' sur '+b, scoreLbl:'/ 10 PUANTEUR',
+    questions:[
+      {q:"Sois honnête — quand as-tu vraiment remis du déodorant aujourd'hui ?", a:["Ce matin, en adulte responsable","Euh… hier ?","Ça fait plusieurs jours","Du déo ? Moi je mise sur la chance"]},
+      {q:"Là, tout de suite — saurais-tu si TU commençais à puer ?", a:["100%, je le saurais tout de suite","Peut-être ? Difficile à dire","Franchement… non. On ne se sent pas soi-même","Je choisis de ne pas savoir"]},
+      {q:"Ce tee-shirt / sac de sport / hoodie — il est vraiment frais à quel point ?", a:["Propre et déodorisé, nickel","J'ai tenu un jour de trop","Il a… une personnalité maintenant","Ce sac, on n'en parle pas"]},
+      {q:"Y a-t-il quelqu'un dans ta vie qui PUE sans s'en douter une seconde ?", a:["Non, mon entourage est frais","…une personne me vient à l'esprit 👀","Oh, plusieurs. PLUSIEURS !","Tout mon groupe a une 'odeur' et personne ne dit rien"]},
+      {q:"As-tu déjà voulu dire à quelqu'un qu'il pue — avant de te dégonfler ?", a:["Jamais eu besoin","Une fois. Emporté dans ma tombe","Tout le temps. C'est trop gênant","Je paierais un héros pour le dire à ma place"]},
+      {q:"Un inconnu se colle à toi dans un bus bondé. Ta réaction ?", a:["Je suis frais, je me rapproche encore","Petit auto-reniflage discret 😬","Panique. Je bloque ma respiration. Je repense à ma vie","Dès que je me détends, le problème c'est moi"]}
+    ],
+    tiers:[
+      {t:"FRAÎCHEUR CERTIFIÉE ✨", v:"Regarde-toi. La pièce est sauvée. Tu as déjà compris : un peu de conscience, beaucoup de bienveillance. Reste au top.", c:"Tu es de ces rares qui remarqueraient vraiment. Le monde a besoin de plus de gens comme toi. 🦸"},
+      {t:"PLUTÔT FRAIS 🌿", v:"Bien — mais tu joues plus serré que tu ne l'avoues. Un matin oublié et l'aiguille bascule. Garde le déo à portée de main.", c:"Astuce de pro : un Contrôle Fraîcheur avant de sortir. Ton toi futur te dira merci."},
+      {t:"ZONE DE DANGER 🚨", v:"Sans jugement — tout le monde est passé par là — mais c'est l'heure d'un Contrôle Puanteur. La bonne nouvelle ? 2 secondes suffisent. Un coup de déo et te revoilà héros.", c:"Aucune honte, on ne parle pas de douche — juste un coup de déo. C'est tout le super-pouvoir. 🧴"},
+      {t:"…il faut qu'on parle 🫣", v:"Avec tendresse ? Le problème, c'est peut-être toi. Mais être celui qui sent n'est pas un défaut — c'est juste qu'on ne se sent pas soi-même. Personne ne te l'a dit. Alors on te le dit gentiment : un coup de déo. Tu gères.", c:"Rebondissement : celui qui pue devient le héros. C'est littéralement tout le jeu. 🦸"}
+    ],
+    vibeLines:{ self:"Tu as posé la question courageuse que la plupart évitent. Respect. 🫡", noseblind:"Ne pas se sentir soi-même, c'est de la vraie science — ce n'est pas ta faute. Maintenant tu sais.", witness:"Tu vois ce que les autres font semblant d'ignorer. THE DEODORANT MAN existe exactement pour ça — le sauvetage bienveillant que personne ne remarque.", silent:"Ce que tu n'as jamais pu dire ? Le héros le dit à ta place — sans humilier personne. 🧴" },
+    share:'📲 Partager mon résultat', save:'💾 Enregistrer la carte', retake:'↻ Recommencer',
+    waitTitle:'Obtiens le jeu en premier. 🦸', waitBody:'THE DEODORANT MAN arrive bientôt sur iOS et Android. Sois le héros qui sauve les gens de leur puanteur — sans jamais gêner personne. <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'ton@email.com — préviens-moi au lancement', join:'🔔 Rejoindre la liste',
+    waitFine:'Pas de spam. Un seul e-mail « c\'est en ligne » + tirage au sort de déo gratuit pour les premiers. Désabonnement à tout moment.',
+    foot:'La blague vise la situation — jamais la personne. Adapté aux ados.',
+    done:'✅ Tu es sur la liste ! Guette l\'e-mail « c\'est en ligne ». Maintenant, défie un ami de battre ton Niveau de Puanteur. 🧴',
+    shareTpl:(l,t)=>'Mon Niveau de Puanteur est '+l+'/10 — '+t+' 😅🧴\nTu te crois plus frais ? Fais le Contrôle Puanteur 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'MON NIVEAU DE PUANTEUR', cardAsk:"C'est quoi TON Niveau de Puanteur ?",
+    copied:'Copié ! Colle-le où tu veux 📋', saved:'Carte enregistrée 💾'
   }
 };
 
@@ -469,7 +535,7 @@ $("#waitForm").onsubmit=async(e)=>{
 /* ---------- boot: auto-detect language ---------- */
 (function(){
   const nav=(navigator.language||"en").slice(0,2).toLowerCase();
-  const map={en:"en",hi:"hi",ur:"hi",ar:"ar",zh:"zh",tr:"tr"};
+  const map={en:"en",hi:"hi",ur:"hi",ar:"ar",zh:"zh",tr:"tr",es:"es",fr:"fr"};
   setLang(map[nav]||"en");
 })();
 </script>
