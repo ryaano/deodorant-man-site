@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>What's Your Stink Level? — THE DEODORANT MAN</title>
+<meta name="description" content="Do you stink? Can you even tell? Take the Stink Check. One swipe. I got you. 🧴 #StinkCheck" />
+<meta property="og:title" content="What's Your Stink Level? 🧴" />
+<meta property="og:description" content="Be honest. Do you stink? Take the Stink Check. I got you. #StinkCheck #IGotYou" />
+<meta property="og:type" content="website" />
+<style>
+  :root{
+    --gold:#E8B84B; --gold-2:#F5D27A; --ink:#0c0c0d; --ink-2:#161618;
+    --line:rgba(232,184,75,.35); --muted:#9b9b9b; --green:#37d67a; --red:#ff5a52;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans","Noto Sans Arabic","Noto Sans Devanagari",sans-serif;
+    background:radial-gradient(120% 80% at 50% 0%, #1c1c20 0%, var(--ink) 55%, #050506 100%);
+    color:#fff; min-height:100vh; min-height:100dvh; overflow-x:hidden;
+    display:flex; align-items:flex-start; justify-content:center;
+  }
+  .wrap{width:100%; max-width:480px; padding:14px 18px 60px; position:relative}
+  .langbar{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:2px 0 10px}
+  .langbar button{background:#141417;border:1px solid #26262b;color:#cfcfcf;border-radius:99px;padding:6px 11px;font-size:13px;font-weight:700;cursor:pointer}
+  .langbar button.on{background:#1d1a12;border-color:var(--gold);color:var(--gold)}
+  .brand{display:flex; align-items:center; gap:9px; justify-content:center; margin:4px 0 16px}
+  .brand .can{font-size:24px}
+  .brand b{font-weight:800; letter-spacing:.06em; font-size:13px; color:var(--gold)}
+  h1{font-size:30px; line-height:1.12; font-weight:900; text-align:center; margin:6px 0 4px; letter-spacing:-.01em}
+  h1 .hl{color:var(--gold)}
+  .sub{text-align:center; color:var(--muted); font-size:15px; line-height:1.5; margin:8px 4px 22px}
+  .card{
+    background:linear-gradient(180deg, var(--ink-2), #0e0e10);
+    border:1px solid var(--line); border-radius:20px; padding:20px 18px;
+    box-shadow:0 18px 50px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .btn{display:block; width:100%; border:none; cursor:pointer; font-weight:800; font-size:17px; padding:16px 18px; border-radius:14px; margin-top:10px;
+    background:linear-gradient(180deg,var(--gold-2),var(--gold)); color:#1a1304; box-shadow:0 8px 22px rgba(232,184,75,.28); transition:transform .08s ease}
+  .btn:active{transform:translateY(1px) scale(.995)}
+  .btn.secondary{background:transparent;color:var(--gold);border:1px solid var(--line);box-shadow:none}
+  .opt{display:flex; align-items:center; gap:12px; width:100%; text-align:start; background:#141417; border:1px solid #26262b; color:#fff; cursor:pointer;
+    padding:15px 15px; border-radius:13px; margin-top:10px; font-size:15.5px; font-weight:600; transition:border-color .12s, background .12s, transform .06s}
+  .opt .emo{font-size:21px; flex:0 0 auto}
+  .opt:active{transform:scale(.99)}
+  .opt.sel{border-color:var(--gold); background:#1d1a12}
+  .progress{height:6px; background:#1f1f23; border-radius:99px; overflow:hidden; margin:0 2px 16px}
+  .progress > i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold),var(--gold-2)); transition:width .35s ease}
+  .qnum{font-size:12.5px; letter-spacing:.12em; color:var(--gold); font-weight:800; text-transform:uppercase; margin:2px 2px 8px}
+  .qtext{font-size:20px; font-weight:800; line-height:1.25; margin:0 2px 6px}
+  .hidden{display:none !important}
+  .meter{position:relative; width:170px; height:170px; margin:6px auto 4px}
+  .meter svg{transform:rotate(-90deg)}
+  .meter .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center}
+  .meter .num b{font-size:54px; font-weight:900; line-height:1; color:#fff}
+  .meter .num span{font-size:12px; color:var(--muted); margin-top:3px; text-align:center}
+  .tier{font-size:23px; font-weight:900; text-align:center; margin:8px 0 2px}
+  .verdict{text-align:center; color:#d9d9d9; font-size:15px; line-height:1.55; margin:6px 6px 4px}
+  .callout{background:#15140e; border:1px solid var(--line); border-radius:13px; padding:13px 14px; margin:14px 0 4px; font-size:14px; line-height:1.55; color:#eecb78}
+  .pssht{font-weight:900; color:var(--gold); letter-spacing:.04em}
+  .field{width:100%; background:#101013; border:1px solid #2a2a30; color:#fff; font-size:16px; padding:15px 14px; border-radius:13px; margin-top:10px}
+  .field:focus{outline:none; border-color:var(--gold)}
+  .fine{font-size:11.5px; color:#6e6e72; text-align:center; margin:12px 6px 0; line-height:1.55}
+  .row{display:flex; gap:10px}
+  .row .btn{flex:1; margin-top:10px}
+  .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px); background:var(--gold); color:#1a1304; font-weight:800; padding:12px 18px; border-radius:99px; opacity:0; transition:.25s; z-index:50; font-size:14px}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+  .footer{text-align:center; color:#55555a; font-size:12px; margin-top:26px; line-height:1.7}
+  .footer b{color:var(--gold)}
+  .spark{position:absolute; pointer-events:none; font-size:18px; animation:rise 1.1s ease-out forwards}
+  @keyframes rise{from{opacity:1; transform:translateY(0) scale(1)} to{opacity:0; transform:translateY(-60px) scale(1.4)}}
+  canvas{display:none}
+  [dir="rtl"] .qnum{letter-spacing:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar" id="langbar"></div>
+  <div class="brand"><span class="can">🧴</span><b>THE DEODORANT MAN</b></div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <h1 id="h1"></h1>
+    <p class="sub" id="introSub"></p>
+    <div class="card">
+      <div class="qnum" id="introQ"></div>
+      <button class="opt" data-vibe="self"><span class="emo">😅</span> <span class="vlbl" data-v="self"></span></button>
+      <button class="opt" data-vibe="noseblind"><span class="emo">🤔</span> <span class="vlbl" data-v="noseblind"></span></button>
+      <button class="opt" data-vibe="witness"><span class="emo">👀</span> <span class="vlbl" data-v="witness"></span></button>
+      <button class="opt" data-vibe="silent"><span class="emo">🤐</span> <span class="vlbl" data-v="silent"></span></button>
+    </div>
+    <p class="fine" id="introFine"></p>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="progress"><i id="bar"></i></div>
+    <div class="card">
+      <div class="qnum" id="qnum"></div>
+      <div class="qtext" id="qtext"></div>
+      <div id="opts"></div>
+    </div>
+    <button class="btn secondary" id="backBtn" style="margin-top:14px"></button>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="hidden">
+    <div class="card">
+      <div class="meter">
+        <svg width="170" height="170" viewBox="0 0 170 170">
+          <circle cx="85" cy="85" r="74" fill="none" stroke="#1f1f23" stroke-width="13"/>
+          <circle id="ring" cx="85" cy="85" r="74" fill="none" stroke="url(#g)" stroke-width="13" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8B84B"/><stop offset="1" stop-color="#F5D27A"/></linearGradient></defs>
+        </svg>
+        <div class="num"><b id="score">0</b><span id="scoreLbl"></span></div>
+      </div>
+      <div class="tier" id="tier"></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="callout" id="callout"></div>
+      <div class="row">
+        <button class="btn" id="shareBtn"></button>
+        <button class="btn secondary" id="cardBtn"></button>
+      </div>
+      <button class="btn secondary" id="retry" style="margin-top:10px"></button>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="tier" style="font-size:19px" id="waitTitle"></div>
+      <p class="verdict" id="waitBody"></p>
+      <form id="waitForm">
+        <input class="field" id="email" type="email" required />
+        <button class="btn" id="joinBtn" type="submit"></button>
+      </form>
+      <p class="fine" id="waitFine"></p>
+    </div>
+
+    <div class="footer">
+      <b>#StinkCheck</b> &nbsp;·&nbsp; <b>#IGotYou</b><br>
+      THE DEODORANT MAN · @deodorantmangame<br>
+      <span style="color:#3a3a3e" id="footNote"></span>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+<canvas id="cv" width="1080" height="1080"></canvas>
+
+<script>
+/* ============================================================
+   CONFIG — set these two (see BACKEND-SETUP.md).
+   ============================================================ */
+const CONFIG = {
+  WAITLIST_ENDPOINT: "PASTE_APPS_SCRIPT_URL",
+  SHARE_URL: "https://deodorantmangame.com/stink-quiz/"
+};
+
+/* ============================================================
+   i18n — 5 languages. Brand law honored in every one:
+   STINK (never "funk"), deodorant-only, never targets a group,
+   cure-not-kill, "I got you", PSSHT. Hashtags stay English.
+   Hindi STINK = बदबू.
+   ============================================================ */
+const LANG = {
+  en:{ name:"EN", dir:"ltr",
+    h1:'What\'s your <span class="hl">Stink Level?</span>',
+    sub:'Be honest. Do <i>you</i> stink? Can you even tell? Know someone who does — and never had the guts to say it?<br>Time for a <b style="color:#fff">Stink Check.</b> 🫣',
+    introQ:'First… why are you really here?',
+    vibes:{ self:'Be honest… do <b>&nbsp;I&nbsp;</b> stink?', noseblind:'I genuinely can\'t tell if I stink', witness:'Someone I KNOW stinks (and has no idea)', silent:'I\'ve wanted to tell someone… but couldn\'t' },
+    introFine:'10 seconds. No shame. We\'ve all been all four. 🧴',
+    back:'← Back', qof:(a,b)=>'Question '+a+' of '+b, scoreLbl:'/ 10 STINK',
+    questions:[
+      {q:"Be real — when did you actually reapply deodorant today?", a:["This morning, like a responsible adult","Uhh… yesterday?","It's a multi-day situation","Deodorant? I rely on vibes"]},
+      {q:"Right now, could you even tell if YOU started to stink?", a:["100%, I'd know instantly","Maybe? Hard to say","Honestly… no. You go nose-blind to yourself","I'm choosing not to find out"]},
+      {q:"That shirt / gym bag / hoodie — how fresh is it really?", a:["Clean and deodorant'd, certified fresh","Did one more day than I should've","It has… a personality now","We don't talk about the bag"]},
+      {q:"Is there someone in your life who STINKS and has zero idea?", a:["Nope, my circle is fresh","…one person comes to mind 👀","Oh, several. SEVERAL.","My whole group has a 'smell' and nobody says it"]},
+      {q:"Ever wanted to tell someone they reek — and chickened out?", a:["Never had to","Once. Took it to my grave","Constantly. It's too awkward","I'd pay a hero to do it for me"]},
+      {q:"A stranger leans in close on a packed bus. Your move?", a:["I'm fresh, I lean right back","Casual self-sniff check 😬","Panic. Hold breath. Reassess my life","I become the problem the second I relax"]}
+    ],
+    tiers:[
+      {t:"CERTIFIED FRESH ✨", v:"Look at you. The room is safe. You already get it: a little awareness, a lot of kindness. Stay sharp.", c:"You're the rare one who'd actually notice. The world needs more of you. 🦸"},
+      {t:"MOSTLY FRESH 🌿", v:"Solid — but you cut it closer than you'd admit. One skipped morning and the meter swings. Keep the deodorant within arm's reach.", c:"Pro move: a Fresh Check before you head out. Future-you says thanks."},
+      {t:"DANGER ZONE 🚨", v:"No judgment — everyone's been here — but it's time for a Stink Check. The good news? It's a 2-second fix. One swipe and you're back to hero status.", c:"No shame, no shower-talk — just a swipe. That's the whole superpower. 🧴"},
+      {t:"…we need to talk 🫣", v:"Lovingly? You might be the situation. But being the smelly one isn't a flaw — it's just nose-blindness. Nobody told you. So we will, kindly: one swipe. You've got this.", c:"Plot twist: the smelly one becomes the hero. That's literally the whole game. 🦸"}
+    ],
+    vibeLines:{ self:"You asked the brave question most people dodge. Respect. 🫡", noseblind:"Nose-blindness is real science — you literally can't smell yourself. Not your fault. Now you know.", witness:"You see what others pretend not to. THE DEODORANT MAN exists for exactly this — the kind save nobody notices.", silent:"That thing you could never say? The hero says it for you — without a single person getting humiliated. 🧴" },
+    share:'📲 Share my result', save:'💾 Save card', retake:'↻ Retake',
+    waitTitle:'Get the game first. 🦸', waitBody:'THE DEODORANT MAN drops soon on iOS & Android. Be the hero who saves people from their stink — without ever embarrassing them. <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'your@email.com — notify me at launch', join:'🔔 Join the waitlist',
+    waitFine:'No spam. One "it\'s live" email + early-bird free deodorant draw. Unsubscribe anytime.',
+    foot:'The joke\'s on the situation — never the person. Teen-safe.',
+    done:'✅ You\'re on the list! Watch your inbox for "it\'s live." Now go dare a friend to beat your Stink Level. 🧴',
+    shareTpl:(l,t)=>'My Stink Level is '+l+'/10 — '+t+' 😅🧴\nThink you\'re fresher? Take the Stink Check 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'MY STINK LEVEL', cardAsk:"What's YOUR Stink Level?",
+    copied:'Copied! Paste it anywhere 📋', saved:'Card saved 💾'
+  },
+
+  hi:{ name:"हिं", dir:"ltr",
+    h1:'तुम्हारा <span class="hl">बदबू लेवल</span> क्या है?',
+    sub:'सच बताओ — क्या <i>तुमसे</i> बदबू आती है? तुम्हें पता भी चलेगा? किसी ऐसे को जानते हो जिससे बदबू आती है, पर कहने की हिम्मत नहीं हुई?<br>अब वक़्त है एक <b style="color:#fff">बदबू चेक</b> का। 🫣',
+    introQ:'पहले बताओ… असल में तुम यहाँ क्यों हो?',
+    vibes:{ self:'सच बताओ… क्या <b>&nbsp;मुझसे&nbsp;</b> बदबू आती है?', noseblind:'मुझे सच में पता नहीं चलता कि मुझसे बदबू आती है', witness:'मैं किसी को जानता/जानती हूँ जिससे बदबू आती है (और उसे पता ही नहीं)', silent:'मैं किसी को बताना चाहता/चाहती था… पर बता नहीं पाया/पाई' },
+    introFine:'10 सेकंड। कोई शर्म नहीं। हम सब चारों रहे हैं। 🧴',
+    back:'← पीछे', qof:(a,b)=>'सवाल '+a+' / '+b, scoreLbl:'/ 10 बदबू',
+    questions:[
+      {q:"सच बताओ — आज डियोडोरेंट आख़िरी बार कब लगाया?", a:["आज सुबह, एक ज़िम्मेदार इंसान की तरह","उम्म… कल?","कई दिन हो गए हैं","डियोडोरेंट? मैं तो बस भरोसे पे चलता/चलती हूँ"]},
+      {q:"अभी इसी वक़्त — क्या तुम्हें पता चलेगा कि तुमसे बदबू आने लगी है?", a:["100%, तुरंत पता चल जाएगा","शायद? कहना मुश्किल है","सच कहूँ तो नहीं — अपनी बदबू ख़ुद को महसूस नहीं होती","मैंने न जानने का फ़ैसला किया है"]},
+      {q:"वो शर्ट / जिम बैग / हुडी — सच में कितनी फ्रेश है?", a:["साफ़ और डियोडोरेंट लगी, बिल्कुल फ्रेश","एक दिन ज़्यादा चला लिया","अब उसकी अपनी 'पर्सनैलिटी' है","उस बैग की बात नहीं करते"]},
+      {q:"क्या तुम्हारी ज़िंदगी में कोई है जिससे बदबू आती है और उसे ज़रा भी अंदाज़ा नहीं?", a:["नहीं, मेरा सर्कल फ्रेश है","…एक चेहरा याद आ रहा है 👀","कई हैं। कई!","मेरे पूरे ग्रुप की एक 'खुशबू' है, और कोई कुछ नहीं कहता"]},
+      {q:"कभी किसी को कहना चाहा कि भाई बदबू आ रही है — और हिम्मत नहीं हुई?", a:["कभी ज़रूरत नहीं पड़ी","एक बार। राज़ ही रख लिया","हमेशा। बहुत अजीब लगता है","कोई हीरो ये काम कर दे तो पैसे दे दूँ"]},
+      {q:"भरी बस में एक अजनबी एकदम पास झुक जाता है। तुम क्या करोगे?", a:["मैं फ्रेश हूँ, मैं और पास हो जाऊँ","चुपके से ख़ुद को सूँघ लूँ 😬","घबराहट। साँस रोको। ज़िंदगी पर सोचो","रिलैक्स होते ही मैं ख़ुद प्रॉब्लम बन जाता/जाती हूँ"]}
+    ],
+    tiers:[
+      {t:"पक्का फ्रेश ✨", v:"वाह! कमरा सुरक्षित है। तुम समझते हो: थोड़ी जागरूकता, बहुत सारी नरमी। ऐसे ही बने रहो।", c:"तुम वो दुर्लभ इंसान हो जो सच में ध्यान देता है। दुनिया को तुम जैसे और चाहिए। 🦸"},
+      {t:"ज़्यादातर फ्रेश 🌿", v:"बढ़िया — पर तुम सोच से ज़्यादा क़रीब आ जाते हो। एक सुबह छूटी और मीटर हिल गया। डियोडोरेंट हाथ के पास रखो।", c:"प्रो टिप: निकलने से पहले एक फ्रेश चेक। बाद वाला तुम शुक्रिया कहेगा।"},
+      {t:"ख़तरे का निशान 🚨", v:"कोई जजमेंट नहीं — सब यहाँ रहे हैं — पर अब बदबू चेक का वक़्त है। अच्छी ख़बर? 2 सेकंड का काम है। एक स्वाइप और तुम वापस हीरो।", c:"कोई शर्म नहीं, कोई लंबी बात नहीं — बस एक स्वाइप। यही तो पूरी सुपरपावर है। 🧴"},
+      {t:"…हमें बात करनी होगी 🫣", v:"प्यार से कहें? शायद मामला तुम ही हो। पर बदबूदार होना कोई कमी नहीं — बस अपनी महक ख़ुद को महसूस नहीं होती। किसी ने बताया नहीं। तो हम नरमी से बताते हैं: एक स्वाइप। तुमसे हो जाएगा।", c:"ट्विस्ट: बदबूदार ही हीरो बन जाता है। पूरी गेम यही तो है। 🦸"}
+    ],
+    vibeLines:{ self:"तुमने वो बहादुर सवाल पूछा जो ज़्यादातर लोग टाल जाते हैं। रिस्पेक्ट। 🫡", noseblind:"अपनी बदबू ख़ुद को न आना असली साइंस है — तुम्हारी ग़लती नहीं। अब पता चल गया।", witness:"तुम वो देखते हो जो बाक़ी अनदेखा करते हैं। THE DEODORANT MAN इसी के लिए है — वो नेक मदद जो किसी को पता भी न चले।", silent:"वो बात जो तुम कभी न कह सके? हीरो तुम्हारी तरफ़ से कह देता है — बिना किसी को शर्मिंदा किए। 🧴" },
+    share:'📲 रिज़ल्ट शेयर करो', save:'💾 कार्ड सेव करो', retake:'↻ दोबारा',
+    waitTitle:'गेम सबसे पहले पाओ। 🦸', waitBody:'THE DEODORANT MAN जल्द ही iOS और Android पर आ रहा है। बनो वो हीरो जो लोगों को उनकी बदबू से बचाए — बिना किसी को शर्मिंदा किए। <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'your@email.com — लॉन्च पर बताना', join:'🔔 वेटलिस्ट जॉइन करो',
+    waitFine:'कोई स्पैम नहीं। बस एक "लाइव हो गया" ईमेल + फ्री डियोडोरेंट ड्रॉ। कभी भी अनसब्सक्राइब करो।',
+    foot:'मज़ाक हालात पर है — किसी इंसान पर नहीं। टीन-सेफ।',
+    done:'✅ तुम लिस्ट में हो! "लाइव हो गया" ईमेल का इंतज़ार करो। अब किसी दोस्त को चैलेंज करो कि तुम्हारा बदबू लेवल बीट करके दिखाए। 🧴',
+    shareTpl:(l,t)=>'मेरा बदबू लेवल है '+l+'/10 — '+t+' 😅🧴\nलगता है तुम ज़्यादा फ्रेश हो? बदबू चेक करो 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'मेरा बदबू लेवल', cardAsk:"तुम्हारा बदबू लेवल क्या है?",
+    copied:'कॉपी हो गया! कहीं भी पेस्ट करो 📋', saved:'कार्ड सेव हो गया 💾'
+  },
+
+  ar:{ name:"ع", dir:"rtl",
+    h1:'ما هو <span class="hl">مستوى رائحتك؟</span>',
+    sub:'بصراحة — هل رائحتك كريهة؟ هل تشعر بها أصلاً؟ تعرف شخصاً رائحته كريهة ولم تجرؤ على إخباره؟<br>حان وقت <b style="color:#fff">فحص الرائحة.</b> 🫣',
+    introQ:'أولاً… لماذا أنت هنا حقاً؟',
+    vibes:{ self:'بصراحة… هل <b>&nbsp;أنا&nbsp;</b> رائحتي كريهة؟', noseblind:'لا أستطيع أن أعرف إن كانت رائحتي كريهة', witness:'أعرف شخصاً رائحته كريهة (وهو لا يدري إطلاقاً)', silent:'أردت أن أخبر أحدهم… لكنني لم أستطع' },
+    introFine:'10 ثوانٍ. لا حرج. كلنا مررنا بالأربعة. 🧴',
+    back:'→ رجوع', qof:(a,b)=>'سؤال '+a+' من '+b, scoreLbl:'/ 10 رائحة',
+    questions:[
+      {q:"بصراحة — متى وضعت مزيل العرق آخر مرة اليوم؟", a:["هذا الصباح، كشخص مسؤول","إممم… أمس؟","المسألة مستمرة منذ أيام","مزيل عرق؟ أنا أعتمد على الحظ"]},
+      {q:"الآن — هل ستعرف لو بدأت رائحتك تصبح كريهة؟", a:["100%، سأعرف فوراً","ربما؟ من الصعب الجزم","بصراحة… لا. المرء لا يشمّ نفسه","اخترت ألا أعرف"]},
+      {q:"تلك القميص / حقيبة النادي / الهودي — كم هي منعشة فعلاً؟", a:["نظيفة وعليها مزيل عرق، منعشة تماماً","صمدت يوماً إضافياً أكثر مما يجب","صار لها… شخصية الآن","لا نتحدث عن الحقيبة"]},
+      {q:"هل في حياتك شخص رائحته كريهة وليس لديه أدنى فكرة؟", a:["لا، محيطي منعش","…يخطر ببالي شخص واحد 👀","بل عدّة أشخاص. عدّة!","مجموعتي كلها لها 'رائحة' ولا أحد يقول شيئاً"]},
+      {q:"هل أردت يوماً إخبار أحدهم أن رائحته كريهة — ثم تراجعت؟", a:["لم أحتج لذلك","مرة. دفنت السرّ معي","دائماً. الأمر محرج جداً","سأدفع لبطل ليقولها بدلاً عني"]},
+      {q:"غريب يقترب منك كثيراً في حافلة مزدحمة. ماذا ستفعل؟", a:["أنا منعش، أقترب أكثر","فحص سريع لرائحتي بخفاء 😬","ذعر. أحبس أنفاسي. أعيد التفكير في حياتي","بمجرد أن أرتاح أصبح أنا المشكلة"]}
+    ],
+    tiers:[
+      {t:"منعش ومضمون ✨", v:"أحسنت. الغرفة بأمان. أنت تفهم القاعدة: قليل من الانتباه، الكثير من اللطف. ابقَ يقظاً.", c:"أنت النادر الذي ينتبه فعلاً. العالم يحتاج المزيد مثلك. 🦸"},
+      {t:"منعش غالباً 🌿", v:"جيد — لكنك تقترب من الخطر أكثر مما تعترف. صباح واحد منسيّ ويتحرك المؤشر. أبقِ مزيل العرق في متناول يدك.", c:"نصيحة: فحص انتعاش قبل الخروج. ستشكر نفسك لاحقاً."},
+      {t:"منطقة الخطر 🚨", v:"بلا أحكام — كلنا مررنا بهذا — لكن حان وقت فحص الرائحة. الخبر الجيد؟ الحل ثانيتان. مسحة واحدة وتعود بطلاً.", c:"لا حرج، ولا حديث عن الاستحمام — مجرد مسحة. تلك هي القوة الخارقة كلها. 🧴"},
+      {t:"…علينا أن نتحدث 🫣", v:"بكل محبة؟ قد تكون أنت المشكلة. لكن كونك صاحب الرائحة ليس عيباً — إنه فقط أنك لا تشمّ نفسك. لم يخبرك أحد. فنخبرك نحن بلطف: مسحة واحدة. أنت قادر.", c:"المفاجأة: صاحب الرائحة يصبح البطل. هذه هي اللعبة كلها حرفياً. 🦸"}
+    ],
+    vibeLines:{ self:"طرحت السؤال الشجاع الذي يتهرب منه أغلب الناس. احترام. 🫡", noseblind:"عدم شمّ المرء لنفسه علمٌ حقيقي — ليست غلطتك. الآن عرفت.", witness:"أنت ترى ما يتظاهر الآخرون بعدم رؤيته. THE DEODORANT MAN وُجد لهذا تماماً — الإنقاذ اللطيف الذي لا يلاحظه أحد.", silent:"ذلك الشيء الذي لم تستطع قوله؟ البطل يقوله نيابةً عنك — دون إحراج أي أحد. 🧴" },
+    share:'📲 شارك نتيجتي', save:'💾 احفظ البطاقة', retake:'↻ أعد',
+    waitTitle:'احصل على اللعبة أولاً. 🦸', waitBody:'THE DEODORANT MAN قريباً على iOS و Android. كن البطل الذي ينقذ الناس من رائحتهم — دون أن يحرج أحداً. <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'your@email.com — أبلغني عند الإطلاق', join:'🔔 انضم لقائمة الانتظار',
+    waitFine:'لا رسائل مزعجة. رسالة واحدة "صارت متاحة" + سحب مزيل عرق مجاني للأوائل. ألغِ الاشتراك متى شئت.',
+    foot:'النكتة على الموقف — لا على الشخص أبداً. آمن للمراهقين.',
+    done:'✅ أنت في القائمة! ترقّب رسالة "صارت متاحة". الآن تحدَّ صديقاً أن يتفوّق على مستوى رائحتك. 🧴',
+    shareTpl:(l,t)=>'مستوى رائحتي هو '+l+'/10 — '+t+' 😅🧴\nتظن أنك أكثر انتعاشاً؟ جرّب فحص الرائحة 👈 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'مستوى رائحتي', cardAsk:"ما هو مستوى رائحتك؟",
+    copied:'تم النسخ! الصقه في أي مكان 📋', saved:'تم حفظ البطاقة 💾'
+  },
+
+  zh:{ name:"中", dir:"ltr",
+    h1:'你的 <span class="hl">体味指数</span> 是多少？',
+    sub:'说实话——<i>你</i>身上有臭味吗？你自己闻得到吗？认识某个有体味、却没人敢说的人吗？<br>是时候来个 <b style="color:#fff">体味检测</b> 了。🫣',
+    introQ:'先说说……你到底为什么来这儿？',
+    vibes:{ self:'说实话……<b>&nbsp;我&nbsp;</b>身上臭吗？', noseblind:'我真的分不清自己有没有臭味', witness:'我认识一个有体味的人（而且他完全没察觉）', silent:'我一直想告诉某人……却开不了口' },
+    introFine:'10秒钟。不丢人。这四种我们都经历过。🧴',
+    back:'← 返回', qof:(a,b)=>'第 '+a+' 题 / 共 '+b+' 题', scoreLbl:'/ 10 体味',
+    questions:[
+      {q:"说实话——你今天最后一次补涂止汗露是什么时候？", a:["今天早上，像个负责任的大人","呃……昨天？","已经好几天了","止汗露？我靠的是运气"]},
+      {q:"此时此刻，如果你开始有体味，你察觉得到吗？", a:["百分百，立刻就知道","也许吧？说不准","老实说……不行。人闻不到自己","我选择不去知道"]},
+      {q:"那件衬衫／健身包／卫衣，到底有多干净？", a:["干净又喷了止汗露，绝对清爽","硬撑了多穿一天","它现在……有了'个性'","那个包我们不提"]},
+      {q:"你生活里有没有一个有体味、却毫无自觉的人？", a:["没有，我的圈子很清爽","……我脑海里浮现一个人 👀","好几个。好几个！","我整个群体都有股'味'，没人吭声"]},
+      {q:"你有没有想告诉别人他身上臭——结果怂了？", a:["没必要过","有一次。烂在肚子里了","经常。太尴尬了","我愿意花钱请个英雄替我说"]},
+      {q:"挤满人的公交上，陌生人凑得很近。你怎么办？", a:["我很清爽，我凑得更近","偷偷自检一下味道 😬","慌了。憋气。重新审视人生","一放松我自己就成了问题"]}
+    ],
+    tiers:[
+      {t:"清爽认证 ✨", v:"厉害。这屋子安全了。你早就懂了：一点点觉察，加上满满的善意。继续保持。", c:"你是少数真正会察觉的人。世界需要更多像你这样的人。🦸"},
+      {t:"基本清爽 🌿", v:"不错——但你比自己以为的更接近边缘。漏掉一个早晨，指针就会摆动。把止汗露放在手边。", c:"高手做法：出门前来个清爽检测。未来的你会感谢你。"},
+      {t:"危险区 🚨", v:"不评判——谁都经历过——但该来个体味检测了。好消息？两秒搞定。一抹，你又是英雄。", c:"不丢人，也别提洗澡——只需一抹。这就是全部的超能力。🧴"},
+      {t:"……我们得谈谈 🫣", v:"带着善意说？也许问题就是你。但有体味不是缺点——只是你闻不到自己。没人告诉过你。那我们温柔地说：一抹就好。你可以的。", c:"反转：有体味的人变成了英雄。整个游戏讲的就是这个。🦸"}
+    ],
+    vibeLines:{ self:"你问出了大多数人回避的勇敢问题。敬你。🫡", noseblind:"闻不到自己是真有科学依据的——不怪你。现在你知道了。", witness:"你看见了别人假装看不见的。THE DEODORANT MAN 就是为此而生——那种没人察觉的善意拯救。", silent:"那句你始终说不出口的话？英雄替你说出来——而且不让任何人难堪。🧴" },
+    share:'📲 分享我的结果', save:'💾 保存卡片', retake:'↻ 重测',
+    waitTitle:'抢先玩到游戏。🦸', waitBody:'THE DEODORANT MAN 即将登陆 iOS 和 Android。成为那个把人从体味中拯救出来、却从不让人难堪的英雄。<span class="pssht">PSSHT.</span>「I got you.」',
+    emailPh:'your@email.com — 上线时通知我', join:'🔔 加入候补名单',
+    waitFine:'绝不打扰。只发一封"上线啦"邮件 + 早鸟免费止汗露抽奖。随时退订。',
+    foot:'玩笑针对的是情境——绝不针对任何人。青少年友好。',
+    done:'✅ 你已加入名单！留意"上线啦"邮件。现在去激将一个朋友来挑战你的体味指数吧。🧴',
+    shareTpl:(l,t)=>'我的体味指数是 '+l+'/10 —— '+t+' 😅🧴\n觉得你更清爽？来测一测 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'我的体味指数', cardAsk:"你的体味指数是多少？",
+    copied:'已复制！随处粘贴 📋', saved:'卡片已保存 💾'
+  },
+
+  tr:{ name:"TR", dir:"ltr",
+    h1:'Senin <span class="hl">Koku Seviyen</span> kaç?',
+    sub:'Dürüst ol — <i>senin</i> kokun var mı? Fark eder miydin ki? Kokan birini tanıyıp da söylemeye cesaret edemedin mi?<br>Bir <b style="color:#fff">Koku Kontrolü</b> zamanı. 🫣',
+    introQ:'Önce söyle… buraya asıl neden geldin?',
+    vibes:{ self:'Dürüst olalım… <b>&nbsp;ben mi&nbsp;</b> kokuyorum?', noseblind:'Kokup kokmadığımı gerçekten anlayamıyorum', witness:'Kokan birini TANIYORUM (ve hiç haberi yok)', silent:'Birine söylemek istedim… ama söyleyemedim' },
+    introFine:'10 saniye. Utanılacak bir şey yok. Dördünü de yaşadık. 🧴',
+    back:'← Geri', qof:(a,b)=>'Soru '+a+' / '+b, scoreLbl:'/ 10 KOKU',
+    questions:[
+      {q:"Dürüst ol — bugün en son ne zaman deodorant sürdün?", a:["Bu sabah, sorumlu bir yetişkin gibi","Eee… dün?","Birkaç gündür sürmedim","Deodorant mı? Ben şansa güveniyorum"]},
+      {q:"Şu an kokmaya başlasan, fark eder miydin?", a:["%100, anında anlardım","Belki? Söylemesi zor","Açıkçası… hayır. İnsan kendi kokusunu almaz","Öğrenmemeyi tercih ediyorum"]},
+      {q:"O tişört / spor çantası / kapüşonlu — gerçekte ne kadar temiz?", a:["Temiz ve deodorantlı, tertemiz","Olması gerekenden bir gün fazla giydim","Artık bir 'kişiliği' var","O çantadan konuşmuyoruz"]},
+      {q:"Hayatında kokan ama bunun hiç farkında olmayan biri var mı?", a:["Yok, çevrem tertemiz","…aklıma bir kişi geliyor 👀","Hem de birkaç tane. BİRKAÇ!","Tüm grubumuzun bir 'kokusu' var, kimse bir şey demiyor"]},
+      {q:"Hiç birine koktuğunu söylemek isteyip de vazgeçtin mi?", a:["Hiç gerek olmadı","Bir kez. Sırrı mezara götürdüm","Sürekli. Çok rahatsız edici","Bunu benim yerime yapacak bir kahramana para verirdim"]},
+      {q:"Kalabalık bir otobüste bir yabancı sana iyice yaklaşıyor. Ne yaparsın?", a:["Ben tertemizim, ben de yaklaşırım","Usulca kendimi koklarım 😬","Panik. Nefesimi tutarım. Hayatımı sorgularım","Rahatladığım an sorun ben olurum"]}
+    ],
+    tiers:[
+      {t:"TERTEMİZ ONAYLI ✨", v:"Bravo. Ortam güvende. Sen zaten anlıyorsun: biraz farkındalık, bolca nezaket. Böyle devam.", c:"Gerçekten fark eden o nadir insansın. Dünyanın senin gibilere ihtiyacı var. 🦸"},
+      {t:"GENELDE TEMİZ 🌿", v:"İyi — ama itiraf ettiğinden daha riskli geziyorsun. Bir sabah atla, ibre oynar. Deodorantı elinin altında tut.", c:"Profesyonel hareket: çıkmadan önce bir Koku Kontrolü. Gelecekteki sen teşekkür edecek."},
+      {t:"TEHLİKE BÖLGESİ 🚨", v:"Yargı yok — herkes buradan geçti — ama Koku Kontrolü zamanı. İyi haber? 2 saniyelik iş. Tek sürüş, yine kahramansın.", c:"Utanç yok, duş muhabbeti yok — sadece bir sürüş. Tüm süper güç bu. 🧴"},
+      {t:"…konuşmamız lazım 🫣", v:"Sevgiyle mi? Sorun sen olabilirsin. Ama kokan kişi olmak bir kusur değil — sadece kendi kokunu alamıyorsun. Kimse söylemedi. O zaman biz nazikçe söyleyelim: tek sürüş. Halledersin.", c:"Sürpriz: kokan kişi kahramana dönüşür. Oyunun tamamı tam olarak bu. 🦸"}
+    ],
+    vibeLines:{ self:"Çoğu insanın kaçtığı o cesur soruyu sordun. Saygı. 🫡", noseblind:"Kendi kokunu alamamak gerçek bir bilim — senin suçun değil. Artık biliyorsun.", witness:"Başkalarının görmezden geldiğini sen görüyorsun. THE DEODORANT MAN tam bunun için var — kimsenin fark etmediği nazik kurtarış.", silent:"Bir türlü söyleyemediğin o şey mi? Kahraman senin yerine söyler — hem de kimseyi utandırmadan. 🧴" },
+    share:'📲 Sonucumu paylaş', save:'💾 Kartı kaydet', retake:'↻ Tekrar',
+    waitTitle:'Oyuna ilk sen ulaş. 🦸', waitBody:'THE DEODORANT MAN yakında iOS ve Android\'de. İnsanları kokularından kurtaran kahraman ol — kimseyi utandırmadan. <span class="pssht">PSSHT.</span> "I got you."',
+    emailPh:'your@email.com — çıkınca haber ver', join:'🔔 Bekleme listesine katıl',
+    waitFine:'Spam yok. Tek bir "yayında" e-postası + erken kuşa ücretsiz deodorant çekilişi. İstediğin zaman çık.',
+    foot:'Şaka duruma — asla kişiye. Gençlere uygun.',
+    done:'✅ Listedesin! "Yayında" e-postasını bekle. Şimdi bir arkadaşına meydan oku, Koku Seviyeni geçsin bakalım. 🧴',
+    shareTpl:(l,t)=>'Koku Seviyem '+l+'/10 — '+t+' 😅🧴\nDaha mı temizsin sence? Koku Kontrolü yap 👉 '+CONFIG.SHARE_URL+'\n#StinkCheck #IGotYou',
+    cardTop:'🧴 THE DEODORANT MAN', cardMid:'KOKU SEVİYEM', cardAsk:"Senin Koku Seviyen kaç?",
+    copied:'Kopyalandı! İstediğin yere yapıştır 📋', saved:'Kart kaydedildi 💾'
+  }
+};
+
+/* ---------- State ---------- */
+let cur="en", vibe=null, step=0, answers=[];
+const SCORES=[0,2,3,4]; // option index -> points (same in every language)
+const NQ=6, MAX=NQ*4;
+const $=s=>document.querySelector(s);
+const T=()=>LANG[cur];
+const show=id=>{["intro","quiz","result"].forEach(s=>$("#"+s).classList.toggle("hidden", s!==id));window.scrollTo(0,0)};
+
+/* ---------- Language bar ---------- */
+function buildLangBar(){
+  const bar=$("#langbar"); bar.innerHTML="";
+  Object.keys(LANG).forEach(code=>{
+    const b=document.createElement("button");
+    b.textContent=LANG[code].name; b.className=code===cur?"on":"";
+    b.onclick=()=>{ setLang(code); };
+    bar.appendChild(b);
+  });
+}
+function setLang(code){
+  cur=code; document.documentElement.lang=code; document.documentElement.dir=LANG[code].dir;
+  buildLangBar(); applyStatic();
+  if(!$("#quiz").classList.contains("hidden")) renderQ();
+  if(!$("#result").classList.contains("hidden") && window._result) renderResultText();
+}
+function applyStatic(){
+  const t=T();
+  $("#h1").innerHTML=t.h1; $("#introSub").innerHTML=t.sub; $("#introQ").textContent=t.introQ; $("#introFine").textContent=t.introFine;
+  document.querySelectorAll(".vlbl").forEach(el=>el.innerHTML=t.vibes[el.dataset.v]);
+  $("#backBtn").textContent=t.back; $("#scoreLbl").textContent=t.scoreLbl;
+  $("#shareBtn").textContent=t.share; $("#cardBtn").textContent=t.save; $("#retry").textContent=t.retake;
+  $("#waitTitle").textContent=t.waitTitle; $("#waitBody").innerHTML=t.waitBody;
+  $("#email").placeholder=t.emailPh; $("#joinBtn").textContent=t.join; $("#waitFine").textContent=t.waitFine; $("#footNote").textContent=t.foot;
+}
+
+/* ---------- Intro ---------- */
+document.querySelectorAll("#intro .opt").forEach(b=>{
+  b.onclick=()=>{ vibe=b.dataset.vibe; step=0; answers=[]; show("quiz"); renderQ(); };
+});
+
+/* ---------- Quiz ---------- */
+function renderQ(){
+  const t=T(), Q=t.questions[step];
+  $("#bar").style.width=((step)/NQ*100)+"%";
+  $("#qnum").textContent=t.qof(step+1,NQ);
+  $("#qtext").textContent=Q.q;
+  const wrap=$("#opts"); wrap.innerHTML="";
+  Q.a.forEach((label,i)=>{
+    const el=document.createElement("button");
+    el.className="opt"+(answers[step]===i?" sel":"");
+    el.innerHTML='<span class="emo">'+["🟢","🟡","🟠","🔴"][i]+'</span> <span>'+label+'</span>';
+    el.onclick=()=>{ answers[step]=i; next(); };
+    wrap.appendChild(el);
+  });
+  $("#backBtn").style.visibility=step===0?"hidden":"visible";
+}
+function next(){ setTimeout(()=>{ if(step<NQ-1){step++;renderQ();} else finish(); },170); }
+$("#backBtn").onclick=()=>{ if(step>0){step--;renderQ();} };
+
+/* ---------- Result ---------- */
+function tierIdx(pct){ return pct<=25?0:pct<=50?1:pct<=75?2:3; }
+function finish(){
+  const total=answers.reduce((s,a)=>s+SCORES[a],0);
+  const pct=Math.round(total/MAX*100);
+  const level=Math.max(1,Math.round(pct/10));
+  window._result={level,pct,idx:tierIdx(pct)};
+  $("#bar").style.width="100%"; show("result"); renderResultText();
+  const ring=$("#ring"), dash=465;
+  ring.style.transition="stroke-dashoffset 1s ease";
+  ring.style.stroke=pct>75?"var(--red)":(pct>50?"#ff9f43":"url(#g)");
+  setTimeout(()=>ring.style.strokeDashoffset=dash-(dash*pct/100),60);
+  let n=0; const iv=setInterval(()=>{n++;$("#score").textContent=n;if(n>=level)clearInterval(iv);},60);
+  for(let i=0;i<8;i++) setTimeout(spark,i*90);
+}
+function renderResultText(){
+  const t=T(), r=window._result, tier=t.tiers[r.idx];
+  $("#score").textContent=r.level;
+  $("#tier").textContent=tier.t; $("#verdict").textContent=tier.v;
+  const vl=t.vibeLines[vibe];
+  $("#callout").innerHTML=(vl?"<b>"+vl+"</b><br><br>":"")+tier.c;
+}
+
+/* ---------- sparkles / toast ---------- */
+function spark(){ const s=document.createElement("div"); s.className="spark"; s.textContent=["✨","🧴","💨"][Math.floor(step%3)];
+  const m=$(".meter").getBoundingClientRect(); s.style.position="fixed";
+  s.style.left=(m.left+m.width*0.5+(Math.random()*80-40))+"px"; s.style.top=(m.top+m.height*0.3)+"px";
+  document.body.appendChild(s); setTimeout(()=>s.remove(),1100); }
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1900); }
+
+/* ---------- share ---------- */
+function shareStr(){ const t=T(),r=window._result||{level:0,idx:0}; return t.shareTpl(r.level, t.tiers[r.idx].t); }
+$("#shareBtn").onclick=async()=>{
+  const data={title:"Stink Level 🧴", text:shareStr(), url:CONFIG.SHARE_URL};
+  try{
+    const blob=await cardBlob();
+    if(blob && navigator.canShare && navigator.canShare({files:[new File([blob],"stink.png",{type:"image/png"})]})){
+      await navigator.share({...data, files:[new File([blob],"stink-level.png",{type:"image/png"})]}); return; }
+    if(navigator.share){ await navigator.share(data); return; }
+  }catch(e){}
+  try{ await navigator.clipboard.writeText(shareStr()); toast(T().copied); }catch(e){ toast("📸"); }
+};
+
+/* ---------- card image ---------- */
+function drawCard(){
+  const t=T(), c=$("#cv"), x=c.getContext("2d"), r=window._result||{level:0,idx:0};
+  x.fillStyle="#0a0a0b"; x.fillRect(0,0,1080,1080);
+  x.strokeStyle="#E8B84B"; x.lineWidth=10; x.strokeRect(40,40,1000,1000);
+  x.textAlign="center"; x.direction=t.dir;
+  x.fillStyle="#E8B84B"; x.font="700 34px -apple-system,Segoe UI,Arial"; x.fillText(t.cardTop,540,150);
+  x.fillStyle="#fff"; x.font="800 50px -apple-system,Segoe UI,Arial"; x.fillText(t.cardMid,540,290);
+  x.fillStyle="#E8B84B"; x.font="900 300px -apple-system,Segoe UI,Arial"; x.fillText(r.level,540,640);
+  x.fillStyle="#9b9b9b"; x.font="700 42px -apple-system,Segoe UI,Arial"; x.fillText("/ 10",540,710);
+  x.fillStyle="#fff"; x.font="800 40px -apple-system,Segoe UI,Arial"; x.fillText(t.tiers[r.idx].t,540,825);
+  x.fillStyle="#E8B84B"; x.font="700 32px -apple-system,Segoe UI,Arial"; x.fillText(t.cardAsk,540,915);
+  x.fillStyle="#7a7a7e"; x.font="600 28px -apple-system,Segoe UI,Arial"; x.fillText("#StinkCheck  #IGotYou",540,975);
+  return c;
+}
+function cardBlob(){ return new Promise(res=>{ try{ drawCard().toBlob(res,"image/png"); }catch(e){ res(null); } }); }
+$("#cardBtn").onclick=()=>{ try{ const a=document.createElement("a"); a.href=drawCard().toDataURL("image/png"); a.download="my-stink-level.png"; a.click(); toast(T().saved); }catch(e){ toast("📸"); } };
+
+/* ---------- retake ---------- */
+$("#retry").onclick=()=>{ step=0; answers=[]; vibe=null; show("intro"); };
+
+/* ---------- waitlist ---------- */
+$("#waitForm").onsubmit=async(e)=>{
+  e.preventDefault();
+  const email=$("#email").value.trim(); if(!email) return;
+  const r=window._result||{};
+  $("#joinBtn").textContent="…";
+  const payload={email, stink_level:r.level||"", tier:(T().tiers[r.idx]||{}).t||"", vibe:vibe||"", lang:cur, source:"stink-quiz"};
+  try{
+    if(CONFIG.WAITLIST_ENDPOINT.includes("PASTE_APPS_SCRIPT_URL")) throw new Error("no-endpoint");
+    await fetch(CONFIG.WAITLIST_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+  }catch(err){
+    try{ const l=JSON.parse(localStorage.getItem("dm_waitlist")||"[]"); l.push(payload); localStorage.setItem("dm_waitlist",JSON.stringify(l)); }catch(e){}
+  }
+  $("#waitForm").innerHTML='<div class="callout" style="color:#37d67a;border-color:rgba(55,214,122,.4)">'+T().done+'</div>';
+};
+
+/* ---------- boot: auto-detect language ---------- */
+(function(){
+  const nav=(navigator.language||"en").slice(0,2).toLowerCase();
+  const map={en:"en",hi:"hi",ur:"hi",ar:"ar",zh:"zh",tr:"tr"};
+  setLang(map[nav]||"en");
+})();
+</script>
+</body>
+</html>
