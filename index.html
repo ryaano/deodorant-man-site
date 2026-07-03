@@ -104,6 +104,16 @@
   .center{text-align:center}
   .h2{font-size:clamp(28px,4.6vw,46px);margin:14px 0 12px}
   .lead{color:#c7c0b2;max-width:640px;margin:0 auto 40px;font-size:16px}
+  .shieldicon{height:1.15em;width:auto;vertical-align:-0.22em;margin:0 .12em;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+  .hashrow{display:flex;flex-wrap:wrap;gap:8px 10px;justify-content:center;max-width:620px;margin:-18px auto 40px}
+  .hashrow span{font-family:'Inter';font-weight:700;font-size:13px;letter-spacing:.02em;color:var(--gold1);
+    background:rgba(227,192,100,.07);border:1px solid var(--gold-deep);border-radius:99px;padding:5px 12px}
+  .social-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .social-btn{display:inline-flex;align-items:center;gap:9px;font-family:'Inter';font-weight:700;font-size:14px;
+    color:var(--gold1);text-decoration:none;background:transparent;border:1px solid var(--gold-deep);border-radius:99px;
+    padding:11px 18px;transition:transform .12s ease,background .2s ease,border-color .2s ease}
+  .social-btn:hover{transform:translateY(-2px);background:rgba(227,192,100,.09);border-color:var(--gold2)}
+  .social-btn svg{width:19px;height:19px;fill:currentColor}
   .reveal{opacity:0;transform:translateY(34px);transition:.9s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold2),transparent);margin:0 auto 22px}
@@ -205,7 +215,10 @@
     <div class="divider"></div>
     <div class="kicker">Before you go</div>
     <h2 class="h2">What's your <span class="gold">Stink Level?</span></h2>
-    <p class="lead">Be honest — can you even tell? Take the 10-second Stink Check. 🧴</p>
+    <p class="lead" style="margin-bottom:14px">Be honest — can you even tell? Take the 10-second Stink Check. <img class="shieldicon" src="assets/shield-icon.png" alt="THE DEODORANT MAN" /></p>
+    <div class="hashrow">
+      <span>#StinkCheck</span><span>#IGotYou</span><span>#DeodorantMan</span><span>#TheDeodorantMan</span><span>#PSSHT</span><span>#comedy</span><span>#indiegame</span><span>#gymtok</span><span>#cleantok</span><span>#theick</span><span>#superhero</span><span>#newgame</span><span>#mobilegaming</span><span>#comingsoon</span><span>#fyp</span><span>#Shorts</span><span>#reels</span>
+    </div>
     <div class="quizframe"><iframe src="stink-quiz/" title="What's your Stink Level? quiz" loading="lazy"></iframe></div>
   </div>
 </section>
@@ -234,7 +247,21 @@
     <div class="kicker">The challenge we own</div>
     <div class="hash gold">#StinkCheck</div>
     <p class="lead" style="margin-top:16px">Point at the camera. Do the self-sniff freeze. Hit the <b>PSSHT</b>. Caption it <i>"Stink Check. I got you. 🧴"</i> and tag the friend who needs it. <b>#IGotYou</b></p>
-    <a href="https://www.tiktok.com/@deodorantmangame" target="_blank" rel="noopener" class="btn btn-gold">Follow @deodorantmangame</a>
+    <div class="social-row">
+      <a class="social-btn" href="https://www.youtube.com/@deodorantmangame" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 16.5 31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/></svg>
+        YouTube
+      </a>
+      <a class="social-btn" href="https://www.instagram.com/deodorantmangame" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.87s0 3.6-.07 4.87c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.87.07s-3.6 0-4.87-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.22 2.2 12s0-3.6.07-4.87c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.73.36-1.05.68-.32.32-.52.62-.68 1.05-.13.32-.28.8-.32 1.7C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.73.68 1.05.32.32.62.52 1.05.68.32.13.8.28 1.7.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.73-.36 1.05-.68.32-.32.52-.62.68-1.05.13-.32.28-.8.32-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.8 2.8 0 0 0-.68-1.05 2.8 2.8 0 0 0-1.05-.68c-.32-.13-.8-.28-1.7-.32C15.5 4 15.15 4 12 4Zm0 3.05A4.95 4.95 0 1 0 16.95 12 4.95 4.95 0 0 0 12 7.05Zm0 8.16A3.21 3.21 0 1 1 15.2 12 3.21 3.21 0 0 1 12 15.2ZM17.16 6.1a1.16 1.16 0 1 0 1.15 1.16 1.16 1.16 0 0 0-1.15-1.16Z"/></svg>
+        Instagram
+      </a>
+      <a class="social-btn" href="https://www.tiktok.com/@deodorantmangame" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.1v13.3a2.6 2.6 0 1 1-2.3-2.6v-3.2a5.8 5.8 0 1 0 5.4 5.8V9.1a7 7 0 0 0 4.2 1.4V7.3a3.9 3.9 0 0 1-2.9-1.3A3.9 3.9 0 0 1 16.6 3.3V2Z"/></svg>
+        TikTok
+      </a>
+    </div>
+    <p class="lead" style="margin:18px auto 0;font-size:14px;opacity:.85">Follow <b class="gold">@deodorantmangame</b> everywhere.</p>
   </div>
 </section>
 

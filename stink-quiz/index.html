@@ -8,6 +8,9 @@
 <meta property="og:title" content="What's Your Stink Level? 🧴" />
 <meta property="og:description" content="Be honest. Do you stink? Take the Stink Check. I got you. #StinkCheck #IGotYou" />
 <meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
 <style>
   :root{
     --gold:#E8B84B; --gold-2:#F5D27A; --ink:#0c0c0d; --ink-2:#161618;
@@ -25,6 +28,14 @@
   .langbar{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:2px 0 10px}
   .langbar button{background:#141417;border:1px solid #26262b;color:#cfcfcf;border-radius:99px;padding:6px 11px;font-size:13px;font-weight:700;cursor:pointer}
   .langbar button.on{background:#1d1a12;border-color:var(--gold);color:var(--gold)}
+  .langhint{text-align:center; font-size:12.5px; line-height:1.5; color:var(--gold); margin:0 4px 14px}
+  .langhint .lead{font-weight:800}
+  .langhint .langnames{display:block; margin-top:3px; color:var(--muted); font-size:11.5px; letter-spacing:.02em}
+  #introFine{font-family:'Anton',sans-serif; font-weight:400; letter-spacing:.04em; text-transform:uppercase;
+    font-size:15px; line-height:1.35; color:transparent;
+    background:linear-gradient(180deg,var(--gold-2),var(--gold)); -webkit-background-clip:text; background-clip:text}
+  #introFine .shieldicon, .sub .shieldicon{height:1.15em; width:auto; vertical-align:-0.22em; margin-left:.15em;
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.55))}
   .brand{display:flex; align-items:center; gap:9px; justify-content:center; margin:4px 0 16px}
   .brand .can{font-size:24px}
   .brand b{font-weight:800; letter-spacing:.06em; font-size:13px; color:var(--gold)}
@@ -77,6 +88,7 @@
 <body>
 <div class="wrap">
   <div class="langbar" id="langbar"></div>
+  <div class="langhint" id="langHint"></div>
   <div class="brand"><span class="can">🧴</span><b>THE DEODORANT MAN</b></div>
 
   <!-- INTRO -->
@@ -168,6 +180,7 @@ const LANG = {
     introQ:'First… why are you really here?',
     vibes:{ self:'Be honest… do <b>&nbsp;I&nbsp;</b> stink?', noseblind:'I genuinely can\'t tell if I stink', witness:'Someone I KNOW stinks (and has no idea)', silent:'I\'ve wanted to tell someone… but couldn\'t' },
     introFine:'10 seconds. No shame. We\'ve all been all four. 🧴',
+    langHint:'<span class="lead">☝ Yes — take it in YOUR language. Tap one. No excuses.</span>',
     back:'← Back', qof:(a,b)=>'Question '+a+' of '+b, scoreLbl:'/ 10 STINK',
     questions:[
       {q:"Be real — when did you actually reapply deodorant today?", a:["This morning, like a responsible adult","Uhh… yesterday?","It's a multi-day situation","Deodorant? I rely on vibes"]},
@@ -201,6 +214,7 @@ const LANG = {
     introQ:'पहले बताओ… असल में तुम यहाँ क्यों हो?',
     vibes:{ self:'सच बताओ… क्या <b>&nbsp;मुझसे&nbsp;</b> बदबू आती है?', noseblind:'मुझे सच में पता नहीं चलता कि मुझसे बदबू आती है', witness:'मैं किसी को जानता/जानती हूँ जिससे बदबू आती है (और उसे पता ही नहीं)', silent:'मैं किसी को बताना चाहता/चाहती था… पर बता नहीं पाया/पाई' },
     introFine:'10 सेकंड। कोई शर्म नहीं। हम सब चारों रहे हैं। 🧴',
+    langHint:'<span class="lead">☝ हाँ — अपनी भाषा में लो। एक दबाओ। कोई बहाना नहीं।</span>',
     back:'← पीछे', qof:(a,b)=>'सवाल '+a+' / '+b, scoreLbl:'/ 10 बदबू',
     questions:[
       {q:"सच बताओ — आज डियोडोरेंट आख़िरी बार कब लगाया?", a:["आज सुबह, एक ज़िम्मेदार इंसान की तरह","उम्म… कल?","कई दिन हो गए हैं","डियोडोरेंट? मैं तो बस भरोसे पे चलता/चलती हूँ"]},
@@ -234,6 +248,7 @@ const LANG = {
     introQ:'پہلے بتاؤ… اصل میں تم یہاں کیوں ہو؟',
     vibes:{ self:'سچ بتاؤ… کیا <b>&nbsp;مجھ سے&nbsp;</b> بدبو آتی ہے؟', noseblind:'مجھے سچ میں پتا نہیں چلتا کہ مجھ سے بدبو آتی ہے', witness:'میں کسی کو جانتا/جانتی ہوں جس سے بدبو آتی ہے (اور اسے پتا ہی نہیں)', silent:'میں کسی کو بتانا چاہتا/چاہتی تھا… پر بتا نہیں پایا/پائی' },
     introFine:'10 سیکنڈ۔ کوئی شرم نہیں۔ ہم سب چاروں رہ چکے ہیں۔ 🧴',
+    langHint:'<span class="lead">☝ ہاں — اپنی زبان میں کھیلو۔ ایک دباؤ۔ کوئی بہانہ نہیں۔</span>',
     back:'→ پیچھے', qof:(a,b)=>'سوال '+a+' / '+b, scoreLbl:'/ 10 بدبو',
     questions:[
       {q:"سچ بتاؤ — آج ڈیوڈورنٹ آخری بار کب لگایا؟", a:["آج صبح، ایک ذمہ دار انسان کی طرح","امم… کل؟","کئی دن ہو گئے ہیں","ڈیوڈورنٹ؟ میں تو بس بھروسے پہ چلتا/چلتی ہوں"]},
@@ -267,6 +282,7 @@ const LANG = {
     introQ:'أولاً… لماذا أنت هنا حقاً؟',
     vibes:{ self:'بصراحة… هل <b>&nbsp;أنا&nbsp;</b> رائحتي كريهة؟', noseblind:'لا أستطيع أن أعرف إن كانت رائحتي كريهة', witness:'أعرف شخصاً رائحته كريهة (وهو لا يدري إطلاقاً)', silent:'أردت أن أخبر أحدهم… لكنني لم أستطع' },
     introFine:'10 ثوانٍ. لا حرج. كلنا مررنا بالأربعة. 🧴',
+    langHint:'<span class="lead">☝ نعم — العبها بلغتك. اضغط واحدة. لا أعذار.</span>',
     back:'→ رجوع', qof:(a,b)=>'سؤال '+a+' من '+b, scoreLbl:'/ 10 رائحة',
     questions:[
       {q:"بصراحة — متى وضعت مزيل العرق آخر مرة اليوم؟", a:["هذا الصباح، كشخص مسؤول","إممم… أمس؟","المسألة مستمرة منذ أيام","مزيل عرق؟ أنا أعتمد على الحظ"]},
@@ -300,6 +316,7 @@ const LANG = {
     introQ:'先说说……你到底为什么来这儿？',
     vibes:{ self:'说实话……<b>&nbsp;我&nbsp;</b>身上臭吗？', noseblind:'我真的分不清自己有没有臭味', witness:'我认识一个有体味的人（而且他完全没察觉）', silent:'我一直想告诉某人……却开不了口' },
     introFine:'10秒钟。不丢人。这四种我们都经历过。🧴',
+    langHint:'<span class="lead">☝ 对，用你的语言来测。点一个。别找借口。</span>',
     back:'← 返回', qof:(a,b)=>'第 '+a+' 题 / 共 '+b+' 题', scoreLbl:'/ 10 体味',
     questions:[
       {q:"说实话——你今天最后一次补涂止汗露是什么时候？", a:["今天早上，像个负责任的大人","呃……昨天？","已经好几天了","止汗露？我靠的是运气"]},
@@ -333,6 +350,7 @@ const LANG = {
     introQ:'Önce söyle… buraya asıl neden geldin?',
     vibes:{ self:'Dürüst olalım… <b>&nbsp;ben mi&nbsp;</b> kokuyorum?', noseblind:'Kokup kokmadığımı gerçekten anlayamıyorum', witness:'Kokan birini TANIYORUM (ve hiç haberi yok)', silent:'Birine söylemek istedim… ama söyleyemedim' },
     introFine:'10 saniye. Utanılacak bir şey yok. Dördünü de yaşadık. 🧴',
+    langHint:'<span class="lead">☝ Evet — kendi dilinde çöz. Birine dokun. Bahane yok.</span>',
     back:'← Geri', qof:(a,b)=>'Soru '+a+' / '+b, scoreLbl:'/ 10 KOKU',
     questions:[
       {q:"Dürüst ol — bugün en son ne zaman deodorant sürdün?", a:["Bu sabah, sorumlu bir yetişkin gibi","Eee… dün?","Birkaç gündür sürmedim","Deodorant mı? Ben şansa güveniyorum"]},
@@ -366,6 +384,7 @@ const LANG = {
     introQ:'Primero… ¿por qué estás realmente aquí?',
     vibes:{ self:'Sé sincero… ¿huelo mal <b>&nbsp;yo&nbsp;</b>?', noseblind:'De verdad no sé si huelo mal', witness:'Conozco a alguien que apesta (y no tiene ni idea)', silent:'Quise decírselo a alguien… pero no pude' },
     introFine:'10 segundos. Sin vergüenza. Todos hemos sido los cuatro. 🧴',
+    langHint:'<span class="lead">☝ Sí — hazlo en TU idioma. Toca uno. Sin excusas.</span>',
     back:'← Atrás', qof:(a,b)=>'Pregunta '+a+' de '+b, scoreLbl:'/ 10 PESTE',
     questions:[
       {q:"Sé sincero — ¿cuándo te pusiste desodorante hoy, de verdad?", a:["Esta mañana, como un adulto responsable","Emm… ¿ayer?","Llevo varios días así","¿Desodorante? Yo me fío de la suerte"]},
@@ -399,6 +418,7 @@ const LANG = {
     introQ:'D\'abord… pourquoi es-tu vraiment là ?',
     vibes:{ self:'Sois honnête… est-ce que <b>&nbsp;je&nbsp;</b> pue ?', noseblind:'Je n\'arrive vraiment pas à savoir si je pue', witness:'Je connais quelqu\'un qui pue (et qui n\'en a aucune idée)', silent:'J\'ai voulu le dire à quelqu\'un… mais je n\'ai pas pu' },
     introFine:'10 secondes. Aucune honte. On a tous été les quatre. 🧴',
+    langHint:'<span class="lead">☝ Oui — fais-le dans TA langue. Touche-en une. Pas d\'excuses.</span>',
     back:'← Retour', qof:(a,b)=>'Question '+a+' sur '+b, scoreLbl:'/ 10 PUANTEUR',
     questions:[
       {q:"Sois honnête — quand as-tu vraiment remis du déodorant aujourd'hui ?", a:["Ce matin, en adulte responsable","Euh… hier ?","Ça fait plusieurs jours","Du déo ? Moi je mise sur la chance"]},
@@ -453,7 +473,9 @@ function setLang(code){
 }
 function applyStatic(){
   const t=T();
-  $("#h1").innerHTML=t.h1; $("#introSub").innerHTML=t.sub; $("#introQ").textContent=t.introQ; $("#introFine").textContent=t.introFine;
+  $("#h1").innerHTML=t.h1; $("#introSub").innerHTML=t.sub; $("#introQ").textContent=t.introQ;
+  $("#introFine").innerHTML=t.introFine.replace(/\s*🧴\s*$/,'').trim()+' <img class="shieldicon" src="../assets/shield-icon.png" alt="THE DEODORANT MAN" />';
+  $("#langHint").innerHTML=t.langHint+'<span class="langnames">English · हिंदी · اردو · العربية · 中文 · Türkçe · Español · Français</span>';
   document.querySelectorAll(".vlbl").forEach(el=>el.innerHTML=t.vibes[el.dataset.v]);
   $("#backBtn").textContent=t.back; $("#scoreLbl").textContent=t.scoreLbl;
   $("#shareBtn").textContent=t.share; $("#cardBtn").textContent=t.save; $("#retry").textContent=t.retake;
