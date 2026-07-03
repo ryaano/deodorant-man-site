@@ -125,7 +125,10 @@
   /* ===== WAITLIST ===== */
   .waitwrap{max-width:720px;margin:0 auto;background:linear-gradient(180deg,#15110a,#0a0806);
     border:1px solid var(--gold-deep);border-radius:6px;padding:52px 34px;text-align:center;box-shadow:var(--shadow)}
-  .waitwrap .mascot{width:170px;margin:0 auto 12px;display:block;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+  .waitwrap .mascot{width:190px;margin:0 auto 12px;display:block;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6));
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 7%,#000 93%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-composite:intersect;
+    mask-image:linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 7%,#000 93%,transparent 100%)}
   .wl-form{display:flex;gap:12px;max-width:460px;margin:24px auto 0;flex-wrap:wrap}
   .wl-form input{flex:1;min-width:210px;padding:16px 18px;border-radius:3px;border:1px solid var(--line);background:#000;color:#fff;font-size:16px;font-family:'Inter'}
   .wl-form input:focus{outline:none;border-color:var(--gold2)}
@@ -215,9 +218,9 @@
     <div class="divider"></div>
     <div class="kicker">Before you go</div>
     <h2 class="h2">What's your <span class="gold">Stink Level?</span></h2>
-    <p class="lead" style="margin-bottom:14px">Be honest — can you even tell? Take the 10-second Stink Check. <img class="shieldicon" src="assets/shield-icon.png" alt="THE DEODORANT MAN" /></p>
+    <p class="lead" style="margin-bottom:14px">Be honest — can you even tell? Take the 10-second Stink Check.</p>
     <div class="hashrow">
-      <span>#StinkCheck</span><span>#IGotYou</span><span>#DeodorantMan</span><span>#TheDeodorantMan</span><span>#PSSHT</span><span>#comedy</span><span>#indiegame</span><span>#gymtok</span><span>#cleantok</span><span>#theick</span><span>#superhero</span><span>#newgame</span><span>#mobilegaming</span><span>#comingsoon</span><span>#fyp</span><span>#Shorts</span><span>#reels</span>
+      <span>#StinkCheck</span><span>#IGotYou</span><span>#DeodorantMan</span><span>#TheDeodorantMan</span><span>#PSSHT</span>
     </div>
     <div class="quizframe"><iframe src="stink-quiz/" title="What's your Stink Level? quiz" loading="lazy"></iframe></div>
   </div>
@@ -246,7 +249,7 @@
     <div class="divider"></div>
     <div class="kicker">The challenge we own</div>
     <div class="hash gold">#StinkCheck</div>
-    <p class="lead" style="margin-top:16px">Point at the camera. Do the self-sniff freeze. Hit the <b>PSSHT</b>. Caption it <i>"Stink Check. I got you. 🧴"</i> and tag the friend who needs it. <b>#IGotYou</b></p>
+    <p class="lead" style="margin-top:16px">Point at the camera. Do the self-sniff freeze. Hit the <b>PSSHT</b>.<br>Caption it <i>"Stink Check. I got you."</i> and tag the friend who needs it. <b>#IGotYou</b></p>
     <div class="social-row">
       <a class="social-btn" href="https://www.youtube.com/@deodorantmangame" target="_blank" rel="noopener" aria-label="YouTube">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 16.5 31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/></svg>
