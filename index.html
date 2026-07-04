@@ -30,6 +30,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+<!-- ===== ANALYTICS / AD CONVERSION TRACKING =====
+     Paste your IDs below. GA4_ID from Google Analytics (Admin → Data streams → "G-XXXXXXXXXX").
+     ADS_CONVERSION from Google Ads (Goals → Conversions → your "Waitlist signup" action → tag setup → "AW-XXXXXXXXX/AbC_dEf..."). Leave "" if none yet.
+     Until GA4_ID is filled, nothing loads (no cookies, no tracking). -->
+<script>
+  window.ANALYTICS = { GA4_ID: "G-XXXXXXXXXX", ADS_CONVERSION: "" };
+  (function(){
+    var id = window.ANALYTICS.GA4_ID;
+    if(!id || id.indexOf('XXXX') > -1) return;          // not configured yet
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+id; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js', new Date()); gtag('config', id);
+    var ads=window.ANALYTICS.ADS_CONVERSION;
+    if(ads && ads.indexOf('XXXX')===-1) gtag('config', ads.split('/')[0]);
+  })();
+  function trackSignup(source){
+    try{
+      if(!window.gtag) return;
+      gtag('event','waitlist_signup',{source:source});
+      var ads=window.ANALYTICS.ADS_CONVERSION;
+      if(ads && ads.indexOf('XXXX')===-1) gtag('event','conversion',{send_to:ads});
+    }catch(e){}
+  }
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -378,6 +404,7 @@
       });
       if(!res.ok) throw new Error('bad-status');
       msg.style.color='#8fe0a0'; msg.textContent="You're on the list. I got you. 🧴"; form.reset();
+      if(window.trackSignup) trackSignup('landing');
     }catch(err){
       msg.style.color='#ff8a80'; msg.textContent="Hmm — that didn't go through. Try again in a sec?";
     }

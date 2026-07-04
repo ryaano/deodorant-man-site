@@ -19,6 +19,29 @@
 <meta name="twitter:title" content="What's Your Stink Level? 🧴" />
 <meta name="twitter:description" content="Be honest. Do you stink? Can you even tell? Take the 10-second Stink Check. #StinkCheck" />
 <meta name="twitter:image" content="https://deodorantmangame.com/assets/og-cover.jpg" />
+
+<!-- Analytics — keep GA4_ID identical to the landing page's index.html -->
+<script>
+  window.ANALYTICS = { GA4_ID: "G-XXXXXXXXXX", ADS_CONVERSION: "" };
+  (function(){
+    var id = window.ANALYTICS.GA4_ID;
+    if(!id || id.indexOf('XXXX') > -1) return;
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+id; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js', new Date()); gtag('config', id);
+    var ads=window.ANALYTICS.ADS_CONVERSION;
+    if(ads && ads.indexOf('XXXX')===-1) gtag('config', ads.split('/')[0]);
+  })();
+  function trackSignup(source){
+    try{
+      if(!window.gtag) return;
+      gtag('event','waitlist_signup',{source:source});
+      var ads=window.ANALYTICS.ADS_CONVERSION;
+      if(ads && ads.indexOf('XXXX')===-1) gtag('event','conversion',{send_to:ads});
+    }catch(e){}
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
@@ -598,6 +621,7 @@ $("#waitForm").onsubmit=async(e)=>{
   try{
     const res=await fetch(CONFIG.WAITLIST_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
     if(!res.ok) throw new Error("bad-status");
+    if(window.trackSignup) trackSignup('stink-quiz');
     $("#waitForm").innerHTML='<div class="callout" style="color:#37d67a;border-color:rgba(55,214,122,.4)">'+T().done+'</div>';
   }catch(err){
     try{ const l=JSON.parse(localStorage.getItem("dm_waitlist")||"[]"); l.push(payload); localStorage.setItem("dm_waitlist",JSON.stringify(l)); }catch(e){}
