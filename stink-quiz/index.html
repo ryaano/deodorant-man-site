@@ -163,7 +163,7 @@
    CONFIG — set these two (see BACKEND-SETUP.md).
    ============================================================ */
 const CONFIG = {
-  WAITLIST_ENDPOINT: "PASTE_APPS_SCRIPT_URL",
+  WAITLIST_ENDPOINT: "https://formsubmit.co/ajax/deodorantman@proton.me",
   SHARE_URL: "https://deodorantmangame.com/stink-quiz/"
 };
 
@@ -577,14 +577,22 @@ $("#waitForm").onsubmit=async(e)=>{
   const email=$("#email").value.trim(); if(!email) return;
   const r=window._result||{};
   $("#joinBtn").textContent="…";
-  const payload={email, stink_level:r.level||"", tier:(T().tiers[r.idx]||{}).t||"", vibe:vibe||"", lang:cur, source:"stink-quiz"};
+  const payload={
+    email,
+    _subject:"🧴 New Stink Quiz signup — THE DEODORANT MAN",
+    _template:"table",
+    _captcha:"false",
+    stink_level:r.level||"", tier:(T().tiers[r.idx]||{}).t||"", vibe:vibe||"", language:cur, source:"stink-quiz"
+  };
   try{
-    if(CONFIG.WAITLIST_ENDPOINT.includes("PASTE_APPS_SCRIPT_URL")) throw new Error("no-endpoint");
-    await fetch(CONFIG.WAITLIST_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    const res=await fetch(CONFIG.WAITLIST_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error("bad-status");
+    $("#waitForm").innerHTML='<div class="callout" style="color:#37d67a;border-color:rgba(55,214,122,.4)">'+T().done+'</div>';
   }catch(err){
     try{ const l=JSON.parse(localStorage.getItem("dm_waitlist")||"[]"); l.push(payload); localStorage.setItem("dm_waitlist",JSON.stringify(l)); }catch(e){}
+    $("#joinBtn").textContent=T().join;
+    $("#email").placeholder="Try again in a sec…";
   }
-  $("#waitForm").innerHTML='<div class="callout" style="color:#37d67a;border-color:rgba(55,214,122,.4)">'+T().done+'</div>';
 };
 
 /* ---------- boot: auto-detect language ---------- */

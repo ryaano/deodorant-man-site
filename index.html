@@ -285,7 +285,7 @@
 </footer>
 
 <script>
-  const CONFIG = { WAITLIST_ENDPOINT: "PASTE_APPS_SCRIPT_URL", PLAY_PREREG_URL: "", APPLE_URL: "" };
+  const CONFIG = { WAITLIST_ENDPOINT: "https://formsubmit.co/ajax/deodorantman@proton.me", PLAY_PREREG_URL: "", APPLE_URL: "" };
 
   const v = document.getElementById('promo');
   const enterScreen = document.getElementById('enter');
@@ -315,12 +315,24 @@
     e.preventDefault();
     const email=document.getElementById('wlEmail').value.trim(); if(!email) return;
     msg.style.color='var(--gold1)'; msg.textContent='Signing you up…';
-    const payload={email,source:'landing',lang:navigator.language||'',ts:new Date().toISOString()};
     try{
-      if(CONFIG.WAITLIST_ENDPOINT.includes('PASTE_APPS_SCRIPT_URL')) throw new Error('no-endpoint');
-      await fetch(CONFIG.WAITLIST_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
-    }catch(err){ console.warn('Set CONFIG.WAITLIST_ENDPOINT'); }
-    msg.style.color='#8fe0a0'; msg.textContent="You're on the list. I got you. 🧴"; form.reset();
+      const res=await fetch(CONFIG.WAITLIST_ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          email,
+          _subject:'🧴 New waitlist signup — THE DEODORANT MAN',
+          _template:'table',
+          _captcha:'false',
+          source:'landing page',
+          language:navigator.language||''
+        })
+      });
+      if(!res.ok) throw new Error('bad-status');
+      msg.style.color='#8fe0a0'; msg.textContent="You're on the list. I got you. 🧴"; form.reset();
+    }catch(err){
+      msg.style.color='#ff8a80'; msg.textContent="Hmm — that didn't go through. Try again in a sec?";
+    }
   });
 
   document.addEventListener('keydown',(e)=>{ if(e.key==='Enter' && !document.body.classList.contains('entered')) enterSite(); });
