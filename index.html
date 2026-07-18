@@ -169,6 +169,9 @@
   .tagline .tm{font-family:'Inter';font-size:.32em;vertical-align:super;color:var(--gold2)}
   .tagline-note{font-family:'Inter';font-size:clamp(12px,1.6vw,15px);font-style:normal;text-transform:uppercase;color:var(--gold2);opacity:.82;margin-top:10px;letter-spacing:.06em}
   .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .team-video{position:relative;width:100%;max-width:760px;margin:44px auto 0;aspect-ratio:1664/1244;border:1px solid var(--gold-deep);
+    border-radius:4px;overflow:hidden;box-shadow:var(--shadow), 0 0 0 6px rgba(0,0,0,.45);background:#000}
+  .team-video video{width:100%;height:100%;object-fit:cover;display:block}
 
   /* ===== SECTIONS ===== */
   section{padding:88px 0;border-top:1px solid var(--line);position:relative}
@@ -282,6 +285,14 @@
       <a href="#waitlist" class="btn btn-gold">Join the Waitlist</a>
       <a href="#quiz" class="btn btn-ghost">What's your Stink Level?</a>
     </div>
+
+    <!-- ===== MARKETING TEAM CTA VIDEO ===== -->
+    <div class="team-video">
+      <video src="assets/team-cta.mp4" poster="assets/team-cta-poster.jpg" playsinline muted loop autoplay controls preload="metadata"></video>
+      <div class="frameglow"></div>
+    </div>
+    <div class="tagline gold">Say Hello To The Deodorant Man Marketing Team</div>
+    <div class="tagline-note">(Not Actual In-Game Characters — They Smell Great Though!!)</div>
   </div>
 </header>
 
